@@ -91,6 +91,7 @@ class LinkedList:
                     self.len -= 1
         else:
             raise IndexError(f'Index {key} is out of range for list of length {self.len}.')
+
     def insert(self, key, item):
         if key in range(-self.len, self.len):
             self.append(self[self.len - 1])
@@ -217,9 +218,6 @@ class LinkedList:
 def main():
     mylist1 = LinkedList([1, 2, 3, 4, 5])
     print(mylist1.minIdx())
-
-
-
 
 if __name__ == '__main__':
     main()
