@@ -411,6 +411,14 @@ class LinkedList:
             prev = val
         return n/self.len
 
+    def comboSort(self):
+        if self.sortedIdx() > 0.9 or self.sortedIdx() < 0.1:
+            print("Merge Activating!")
+            return self.mergeSort2()
+        else:
+            print("Quick Activating!")
+            return self.quickSort()
+
 def main():
     n = 1000
     mylist1 = LinkedList([])
@@ -420,7 +428,7 @@ def main():
     print(mylist1)
     print(f'Sorted Index: {mylist1.sortedIdx()}')
     time = perf_counter()
-    mylist = mylist1.quickSort()
+    mylist = mylist1.comboSort()
     time = perf_counter() - time
     print(mylist)
     print(f'Sorted Index: {mylist.sortedIdx()}')
