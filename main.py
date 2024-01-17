@@ -420,6 +420,7 @@ class LinkedList:
             return self.quickSort()
 
 def main():
+    '''
     n = 1000
     mylist1 = LinkedList([])
     mylist1.fill(n)
@@ -434,7 +435,6 @@ def main():
     print(f'Sorted Index: {mylist.sortedIdx()}')
     print(f"Is Sorted?: {mylist.isSorted()}")
     print(f"Seconds: {time} s")
-    '''
     fig, ax = plt.subplots()
     number = 500
     timeList = []
@@ -475,24 +475,50 @@ def main():
     print(mylist1.isSorted())
     ani = animation.ArtistAnimation(fig=fig, artists=artists, interval=steps)
     ani.save(filename="sort3.gif", writer="pillow")
+    '''
     fig, ax = plt.subplots()
-    n = 12
+    n = 500
     time = []
-    for i in range(1, n+1):
+    for i in range(1, n):
         mylist1 = LinkedList([])
-        mylist1.fill(2 ** i)
+        mylist1.fill(i)
         for _ in range(2000):
-            mylist1.swap(random.randint(0, (2 ** i) - 1), random.randint(0, (2 ** i) - 1))
+            mylist1.swap(random.randint(0, (i) - 1), random.randint(0, (i) - 1))
         timeTemp = perf_counter()
-        mylist1.sort5()
+        mylist1 = mylist1.quickSort()
         timeTemp = perf_counter() - timeTemp
         time.append(timeTemp)
+        print(i)
     x = []
-    for i in range(1, n+1):
-        x.append(2**i)
-    ax.plot(x, time)
+    for i in range(1, n):
+        x.append(i)
+    ax.plot(x, time, label='Shuffled')
+    time2 = []
+    for i in range(1, n):
+        mylist1 = LinkedList([])
+        mylist1.fill(i)
+        for _ in range(10):
+            mylist1.swap(random.randint(0, (i) - 1), random.randint(0, (i) - 1))
+        timeTemp = perf_counter()
+        mylist1 = mylist1.quickSort()
+        timeTemp = perf_counter() - timeTemp
+        time2.append(timeTemp)
+        print(i)
+    time3 = []
+    ax.plot(x, time2, label='Little Mixing')
+    for i in range(1, n):
+        mylist1 = LinkedList([])
+        mylist1.fill(i)
+        # for _ in range(2000):
+        # mylist1.swap(random.randint(0, (i) - 1), random.randint(0, (i) - 1))
+        timeTemp = perf_counter()
+        mylist1 = mylist1.quickSort()
+        timeTemp = perf_counter() - timeTemp
+        time3.append(timeTemp)
+        print(i)
+    ax.plot(x, time3, label='No Mixing')
+    ax.legend()
     plt.show()
-    '''
 
 if __name__ == '__main__':
     main()
