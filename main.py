@@ -477,7 +477,7 @@ def main():
     ani.save(filename="sort3.gif", writer="pillow")
     '''
     fig, ax = plt.subplots()
-    n = 500
+    n = 200
     time = []
     for i in range(1, n):
         mylist1 = LinkedList([])
@@ -485,7 +485,7 @@ def main():
         for _ in range(2000):
             mylist1.swap(random.randint(0, (i) - 1), random.randint(0, (i) - 1))
         timeTemp = perf_counter()
-        mylist1 = mylist1.quickSort()
+        mylist1 = mylist1.bubbleSort()
         timeTemp = perf_counter() - timeTemp
         time.append(timeTemp)
         print(i)
@@ -500,7 +500,7 @@ def main():
         for _ in range(10):
             mylist1.swap(random.randint(0, (i) - 1), random.randint(0, (i) - 1))
         timeTemp = perf_counter()
-        mylist1 = mylist1.quickSort()
+        mylist1 = mylist1.bubbleSort()
         timeTemp = perf_counter() - timeTemp
         time2.append(timeTemp)
         print(i)
@@ -512,11 +512,12 @@ def main():
         # for _ in range(2000):
         # mylist1.swap(random.randint(0, (i) - 1), random.randint(0, (i) - 1))
         timeTemp = perf_counter()
-        mylist1 = mylist1.quickSort()
+        mylist1 = mylist1.bubbleSort()
         timeTemp = perf_counter() - timeTemp
         time3.append(timeTemp)
         print(i)
     ax.plot(x, time3, label='No Mixing')
+    ax.set_title('Bubble Sort')
     ax.legend()
     plt.show()
 
