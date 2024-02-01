@@ -3,8 +3,8 @@ from time import perf_counter
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
-
 from matplotlib import animation
+
 sys.setrecursionlimit(10000000)
 
 class Node:
@@ -485,7 +485,7 @@ def main():
         for _ in range(2000):
             mylist1.swap(random.randint(0, (i) - 1), random.randint(0, (i) - 1))
         timeTemp = perf_counter()
-        mylist1 = mylist1.bubbleSort()
+        mylist1 = mylist1.quickSort()
         timeTemp = perf_counter() - timeTemp
         time.append(timeTemp)
         print(i)
@@ -500,7 +500,7 @@ def main():
         for _ in range(10):
             mylist1.swap(random.randint(0, (i) - 1), random.randint(0, (i) - 1))
         timeTemp = perf_counter()
-        mylist1 = mylist1.bubbleSort()
+        mylist1 = mylist1.quickSort()
         timeTemp = perf_counter() - timeTemp
         time2.append(timeTemp)
         print(i)
@@ -512,13 +512,14 @@ def main():
         # for _ in range(2000):
         # mylist1.swap(random.randint(0, (i) - 1), random.randint(0, (i) - 1))
         timeTemp = perf_counter()
-        mylist1 = mylist1.bubbleSort()
+        mylist1 = mylist1.quickSort()
         timeTemp = perf_counter() - timeTemp
         time3.append(timeTemp)
         print(i)
     ax.plot(x, time3, label='No Mixing')
-    ax.set_title('Bubble Sort')
+    ax.set_title('Quick Sort')
     ax.legend()
+    plt.savefig('QuickSort')
     plt.show()
 
 if __name__ == '__main__':
